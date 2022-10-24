@@ -3,8 +3,10 @@ package com.example.flipcardsapp.userApp;
 import com.example.flipcardsapp.flipCard.FlipCardImp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class AppUser {
@@ -16,7 +18,7 @@ public class AppUser {
     private String emailAddress;
     private String password;
     @OneToMany()
-    private List<FlipCardImp> flipCards;
+    private List<FlipCardImp> flipCards = new ArrayList<>();
 
     public AppUser() {
     }
@@ -45,7 +47,7 @@ public class AppUser {
     }
 
     public void assignFlipCard(FlipCardImp flipCard){
-        flipCards.add(flipCard);
+        this.flipCards.add(flipCard);
     }
 
     @Override
@@ -55,5 +57,18 @@ public class AppUser {
                 ", emailAddress='" + emailAddress + '\'' +
                 ", flipCards=" + flipCards +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AppUser appUser = (AppUser) o;
+        return id == appUser.id && Objects.equals(userName, appUser.userName) && Objects.equals(emailAddress, appUser.emailAddress) && Objects.equals(password, appUser.password) && Objects.equals(flipCards, appUser.flipCards);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userName, emailAddress, password, flipCards);
     }
 }

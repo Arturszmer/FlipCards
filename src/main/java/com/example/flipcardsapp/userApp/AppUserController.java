@@ -1,6 +1,5 @@
 package com.example.flipcardsapp.userApp;
 
-import com.example.flipcardsapp.flipCard.FlipCardService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +12,15 @@ import java.util.List;
 @RequestMapping("/user")
 public class AppUserController {
 
-    public AppUserController(AppUserService appUserService, FlipCardService flipCardService) {
+    private final AppUserService appUserService;
+
+    public AppUserController(AppUserService appUserService) {
+        this.appUserService = appUserService;
     }
 
     @GetMapping
-    List<AppUserDTO> users (){
-        return null;
+    List<AppUserDTO> showAllUsers(){
+        return appUserService.getAllUsers();
     }
 
 }
