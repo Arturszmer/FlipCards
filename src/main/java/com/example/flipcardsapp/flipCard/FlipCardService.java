@@ -1,4 +1,4 @@
-package com.example.flipcardsapp.FlipCard;
+package com.example.flipcardsapp.flipCard;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

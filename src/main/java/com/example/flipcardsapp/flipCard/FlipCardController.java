@@ -1,4 +1,4 @@
-package com.example.flipcardsapp.FlipCard;
+package com.example.flipcardsapp.flipCard;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

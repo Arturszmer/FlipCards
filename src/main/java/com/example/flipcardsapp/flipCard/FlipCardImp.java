@@ -1,4 +1,4 @@
-package com.example.flipcardsapp.FlipCard;
+package com.example.flipcardsapp.flipCard;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -9,6 +9,7 @@ public class FlipCardImp {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    private float studyPercent;
     @OneToOne(cascade = CascadeType.ALL)
 
     private FlipCardFront flipCardFront;
@@ -21,6 +22,7 @@ public class FlipCardImp {
     public FlipCardImp(FlipCardFront flipCardFront, FlipCardBack flipCardBack) {
         this.flipCardFront = flipCardFront;
         this.flipCardBack = flipCardBack;
+        this.studyPercent = 0.01f;
     }
 
     public FlipCardFront getFlipCardFront() {
@@ -29,6 +31,10 @@ public class FlipCardImp {
 
     public FlipCardBack getFlipCardBack() {
         return flipCardBack;
+    }
+
+    public float getStudyPercent() {
+        return studyPercent;
     }
 
     @Override
@@ -47,7 +53,8 @@ public class FlipCardImp {
     @Override
     public String toString() {
         return "FlipCardImp{" +
-                "flipCardFront=" + flipCardFront +
+                "studyPercent=" + studyPercent +
+                ", flipCardFront=" + flipCardFront +
                 ", flipCardBack=" + flipCardBack +
                 '}';
     }
