@@ -9,11 +9,9 @@ public class FlipCardFront implements FlipCard{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String content;
-    private StudyLevel level;
 
     public FlipCardFront(String content) {
         this.content = content;
-        this.level = StudyLevel.BAD;
     }
 
     public FlipCardFront() {
@@ -27,7 +25,6 @@ public class FlipCardFront implements FlipCard{
     public String toString() {
         return "FlipCardFront{" +
                 "content='" + content + '\'' +
-                ", level=" + level +
                 '}';
     }
 }

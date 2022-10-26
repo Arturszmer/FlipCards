@@ -1,13 +1,11 @@
 package com.example.flipcardsapp.mapper;
 
-import com.example.flipcardsapp.flipCard.FlipCardBack;
-import com.example.flipcardsapp.flipCard.FlipCardFront;
-import com.example.flipcardsapp.flipCard.FlipCardImp;
-import com.example.flipcardsapp.flipCard.FlipCardImpDTO;
+import com.example.flipcardsapp.flipCard.*;
 import com.example.flipcardsapp.userApp.AppUser;
 import com.example.flipcardsapp.userApp.AppUserDTO;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -36,9 +34,10 @@ public class Mapper {
 
     public FlipCardImpDTO flipCardImpDTO (FlipCardImp flipCardImp){
         float studyPercent = flipCardImp.getStudyPercent();
+        StudyLevel level = flipCardImp.getLevel();
         FlipCardFront flipCardFront = flipCardImp.getFlipCardFront();
         FlipCardBack flipCardBack = flipCardImp.getFlipCardBack();
-        return new FlipCardImpDTO(studyPercent, flipCardFront, flipCardBack);
+        return new FlipCardImpDTO(studyPercent, flipCardFront, flipCardBack, level);
     }
 
     public FlipCardImp flipCardImpFromDTO (FlipCardImpDTO flipCardImpDTO){

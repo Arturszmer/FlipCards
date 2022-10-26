@@ -10,6 +10,8 @@ public class FlipCardImp {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private float studyPercent;
+    private StudyLevel level;
+
     @OneToOne(cascade = CascadeType.ALL)
 
     private FlipCardFront flipCardFront;
@@ -35,6 +37,10 @@ public class FlipCardImp {
 
     public float getStudyPercent() {
         return studyPercent;
+    }
+
+    public StudyLevel getLevel() {
+        return level;
     }
 
     @Override
