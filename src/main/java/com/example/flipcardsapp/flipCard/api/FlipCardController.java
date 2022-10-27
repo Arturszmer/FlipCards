@@ -4,6 +4,8 @@ import com.example.flipcardsapp.flipCard.dao.model.FlipCardBack;
 import com.example.flipcardsapp.flipCard.dao.model.FlipCardFront;
 import com.example.flipcardsapp.flipCard.dao.model.FlipCardImpDTO;
 import com.example.flipcardsapp.flipCard.service.FlipCardService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +34,12 @@ public class FlipCardController {
     @GetMapping("/back")
     public List<FlipCardBack> showBackFlipCards(){
         return flipCardService.showAllBackFlipCards();
+    }
+
+    @PostMapping("add")
+    public ResponseEntity<Void> addFlipCard(@RequestBody FlipCardImpDTO flipCardImpDTO){
+        flipCardService.addFlipCard(flipCardImpDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

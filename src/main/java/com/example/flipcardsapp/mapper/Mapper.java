@@ -40,10 +40,11 @@ public class Mapper {
         UUID uuid = UUID.fromString(flipCardImp.getUuid());
         FlipCardFront flipCardFront = flipCardImp.getFlipCardFront();
         FlipCardBack flipCardBack = flipCardImp.getFlipCardBack();
-        return new FlipCardImpDTO(studyPercent, uuid, flipCardFront, flipCardBack);
+        return new FlipCardImpDTO(studyPercent, uuid.toString(), flipCardFront, flipCardBack);
     }
 
     public FlipCardImp flipCardImpFromDTO (FlipCardImpDTO flipCardImpDTO){
+        flipCardImpDTO.setUuid(UUID.randomUUID().toString());
         return new FlipCardImp(flipCardImpDTO.getStudyLevel(),
                 UUID.fromString(flipCardImpDTO.getUuid()),
                 flipCardImpDTO.getFlipCardFront(),

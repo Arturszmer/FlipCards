@@ -4,14 +4,17 @@ import java.util.UUID;
 
 public class FlipCardImpDTO {
 
-    private final float studyLevel;
-    private final String uuid;
-    private final FlipCardFront flipCardFront;
-    private final FlipCardBack flipCardBack;
+    private float studyLevel;
+    private String uuid;
+    private FlipCardFront flipCardFront;
+    private FlipCardBack flipCardBack;
 
-    public FlipCardImpDTO(float studyLevel, UUID uuid, FlipCardFront flipCardFront, FlipCardBack flipCardBack) {
+    public FlipCardImpDTO() {
+    }
+
+    public FlipCardImpDTO(float studyLevel, String uuid, FlipCardFront flipCardFront, FlipCardBack flipCardBack) {
         this.studyLevel = studyLevel;
-        this.uuid = uuid.toString();
+        this.uuid = uuid;
         this.flipCardFront = flipCardFront;
         this.flipCardBack = flipCardBack;
     }
@@ -39,6 +42,11 @@ public class FlipCardImpDTO {
         return flipCardBack;
     }
 
+    public void setStudyLevel(float studyLevel) {
+        this.studyLevel = studyLevel;
+    }
 
-
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 }
