@@ -1,4 +1,4 @@
-package com.example.flipcardsapp.flipCard;
+package com.example.flipcardsapp.logic;
 
 public enum StudyLevel {
     BAD,

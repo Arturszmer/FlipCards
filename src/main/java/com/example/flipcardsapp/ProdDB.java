@@ -1,11 +1,11 @@
 package com.example.flipcardsapp;
 
-import com.example.flipcardsapp.flipCard.FlipCardBack;
-import com.example.flipcardsapp.flipCard.FlipCardFront;
-import com.example.flipcardsapp.flipCard.FlipCardImp;
-import com.example.flipcardsapp.flipCard.FlipCardRepo;
-import com.example.flipcardsapp.userApp.AppUser;
-import com.example.flipcardsapp.userApp.AppUserRepo;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardBack;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardFront;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardImp;
+import com.example.flipcardsapp.flipCard.dao.FlipCardRepo;
+import com.example.flipcardsapp.userApp.dao.model.AppUser;
+import com.example.flipcardsapp.userApp.dao.AppUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
@@ -30,8 +30,7 @@ public class ProdDB implements CommandLineRunner {
         flipCardRepo.save(flipCardImp2);
         List<FlipCardImp> allFLipCards = flipCardRepo.findAll();
         AppUser appUser1 = new AppUser("Artur", "artur@gmail.com", "xxyyz", allFLipCards);
-        AppUser save = appUserRepo.save(appUser1);
-        System.out.println(save + "saved");
+        appUserRepo.save(appUser1);
     }
 
 }

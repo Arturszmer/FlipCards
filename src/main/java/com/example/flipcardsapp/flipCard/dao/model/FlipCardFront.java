@@ -1,9 +1,9 @@
-package com.example.flipcardsapp.flipCard;
+package com.example.flipcardsapp.flipCard.dao.model;
 
 import javax.persistence.*;
 
 @Entity
-public class FlipCardFront implements FlipCard{
+public class FlipCardFront implements FlipCard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

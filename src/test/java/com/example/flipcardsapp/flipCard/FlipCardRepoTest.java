@@ -1,5 +1,9 @@
 package com.example.flipcardsapp.flipCard;
 
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardBack;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardFront;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardImp;
+import com.example.flipcardsapp.flipCard.dao.FlipCardRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -52,7 +56,7 @@ class FlipCardRepoTest {
 
         // when
         Optional<FlipCardImp> riverCard = flipCardRepo.findByFlipCardFront_Content("river");
-        System.out.println(riverCard + "xxxyy");
+
         // then
         assertThat(riverCard.get()).isEqualTo(flipCardImp1);
     }

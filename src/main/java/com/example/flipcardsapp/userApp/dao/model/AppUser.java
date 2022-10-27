@@ -1,6 +1,6 @@
-package com.example.flipcardsapp.userApp;
+package com.example.flipcardsapp.userApp.dao.model;
 
-import com.example.flipcardsapp.flipCard.FlipCardImp;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardImp;
 
 import javax.persistence.*;
 import java.util.ArrayList;

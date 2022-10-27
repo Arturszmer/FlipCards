@@ -1,6 +1,6 @@
-package com.example.flipcardsapp.userApp;
+package com.example.flipcardsapp.userApp.dao.model;
 
-import com.example.flipcardsapp.flipCard.FlipCardImpDTO;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardImpDTO;
 
 import java.util.Collections;
 import java.util.List;

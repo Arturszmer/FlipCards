@@ -1,9 +1,11 @@
 package com.example.flipcardsapp.userApp;
 
-import com.example.flipcardsapp.flipCard.FlipCardBack;
-import com.example.flipcardsapp.flipCard.FlipCardFront;
-import com.example.flipcardsapp.flipCard.FlipCardImp;
-import com.example.flipcardsapp.flipCard.FlipCardRepo;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardBack;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardFront;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardImp;
+import com.example.flipcardsapp.flipCard.dao.FlipCardRepo;
+import com.example.flipcardsapp.userApp.dao.model.AppUser;
+import com.example.flipcardsapp.userApp.dao.AppUserRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,5 +1,7 @@
-package com.example.flipcardsapp.userApp;
+package com.example.flipcardsapp.userApp.api;
 
+import com.example.flipcardsapp.userApp.dao.model.AppUserDTO;
+import com.example.flipcardsapp.userApp.service.AppUserService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

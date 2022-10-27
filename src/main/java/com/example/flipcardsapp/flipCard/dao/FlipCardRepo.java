@@ -1,5 +1,6 @@
-package com.example.flipcardsapp.flipCard;
+package com.example.flipcardsapp.flipCard.dao;
 
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardImp;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

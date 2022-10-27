@@ -1,5 +1,6 @@
-package com.example.flipcardsapp.userApp;
+package com.example.flipcardsapp.userApp.dao;
 
+import com.example.flipcardsapp.userApp.dao.model.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

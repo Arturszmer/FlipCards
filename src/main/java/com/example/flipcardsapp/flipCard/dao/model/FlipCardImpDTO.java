@@ -1,4 +1,4 @@
-package com.example.flipcardsapp.flipCard;
+package com.example.flipcardsapp.flipCard.dao.model;
 
 import java.util.UUID;
 

@@ -1,5 +1,11 @@
 package com.example.flipcardsapp.flipCard;
 
+import com.example.flipcardsapp.flipCard.dao.*;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardBack;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardFront;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardImp;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardImpDTO;
+import com.example.flipcardsapp.flipCard.service.FlipCardService;
 import com.example.flipcardsapp.mapper.Mapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +41,6 @@ class FlipCardServiceTest {
 
         // then
         assertThat(allNewFlipCards.size()).isEqualTo(2);
-
     }
 
     @Test
@@ -50,7 +55,6 @@ class FlipCardServiceTest {
 
         // then
         assertThat(allFlipCards.size()).isEqualTo(0);
-
     }
 
     @Test
@@ -64,7 +68,6 @@ class FlipCardServiceTest {
         Optional<FlipCardImp> changedFlipCard = flipCardRepo.findFlipCardImpByUuid(flipCardImpDTO.getUuid());
         // then
         assertThat(changedFlipCard.get().getFlipCardFront().getContent()).isEqualTo("road, way");
-
     }
 
     @Test
@@ -78,7 +81,43 @@ class FlipCardServiceTest {
         Optional<FlipCardImp> changedFlipCard = flipCardRepo.findFlipCardImpByUuid(flipCardImpDTO.getUuid());
         // then
         assertThat(changedFlipCard.get().getFlipCardBack().getContent()).isEqualTo("droga, szosa, trakt");
+    }
 
+    @Test
+    public void allFlipCards() {
+        // given
+        prepareFlipCards();
+
+        // when
+        List<FlipCardImpDTO> allFlipCards = flipCardService.findAllFlipCards();
+
+        // then
+        assertThat(allFlipCards.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void allFrontFLipCards() {
+        // given
+        prepareFlipCards();
+
+        // when
+        List<FlipCardFront> flipCardFronts = flipCardService.showAllFrontFlipCards();
+
+        // then
+        assertThat(flipCardFronts.get(0).getContent()).isEqualTo("road");
+
+    }
+
+    @Test
+    public void allBackFlipCards() {
+        // given
+        prepareFlipCards();
+
+        // when
+        List<FlipCardBack> flipCardBacks = flipCardService.showAllBackFlipCards();
+
+        // then
+        assertThat(flipCardBacks.get(0).getContent()).isEqualTo("droga");
     }
 
     public void prepareFlipCards(){
@@ -87,6 +126,4 @@ class FlipCardServiceTest {
         flipCardService.addFlipCard(flipCardImpDTO);
         flipCardService.addFlipCard(flipCardImpDTO2);
     }
-
-
 }

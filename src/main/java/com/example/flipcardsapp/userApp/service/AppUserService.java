@@ -1,7 +1,9 @@
-package com.example.flipcardsapp.userApp;
+package com.example.flipcardsapp.userApp.service;
 
-import com.example.flipcardsapp.flipCard.FlipCardRepo;
+import com.example.flipcardsapp.flipCard.dao.FlipCardRepo;
 import com.example.flipcardsapp.mapper.Mapper;
+import com.example.flipcardsapp.userApp.dao.model.AppUserDTO;
+import com.example.flipcardsapp.userApp.dao.AppUserRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

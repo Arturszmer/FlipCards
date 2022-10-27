@@ -1,8 +1,11 @@
 package com.example.flipcardsapp.mapper;
 
-import com.example.flipcardsapp.flipCard.*;
-import com.example.flipcardsapp.userApp.AppUser;
-import com.example.flipcardsapp.userApp.AppUserDTO;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardBack;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardFront;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardImp;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardImpDTO;
+import com.example.flipcardsapp.userApp.dao.model.AppUser;
+import com.example.flipcardsapp.userApp.dao.model.AppUserDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
