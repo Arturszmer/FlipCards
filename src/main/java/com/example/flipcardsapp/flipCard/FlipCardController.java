@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class FlipCardController {
 
+    private final FlipCardService flipCardService;
+
     public FlipCardController(FlipCardService flipCardService) {
+        this.flipCardService = flipCardService;
     }
 
 }

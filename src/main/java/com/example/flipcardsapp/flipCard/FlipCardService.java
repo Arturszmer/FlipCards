@@ -1,5 +1,6 @@
 package com.example.flipcardsapp.flipCard;
 
+import com.example.flipcardsapp.mapper.Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -7,8 +8,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class FlipCardService {
 
-    public FlipCardService(FlipCardRepo flipCardRepo) {
+    private final FlipCardRepo flipCardRepo;
+    private final Mapper mapper;
+
+    public FlipCardService(FlipCardRepo flipCardRepo, Mapper mapper) {
+        this.flipCardRepo = flipCardRepo;
+        this.mapper = mapper;
     }
 
+    public void addFlipCard(FlipCardImpDTO flipCardImpDTO) {
+        flipCardRepo.save(mapper.flipCardImpFromDTO(flipCardImpDTO));
+    }
 
+    public void removeFlipCard() {
+    }
 }

@@ -34,10 +34,9 @@ public class Mapper {
 
     public FlipCardImpDTO flipCardImpDTO (FlipCardImp flipCardImp){
         float studyPercent = flipCardImp.getStudyPercent();
-        StudyLevel level = flipCardImp.getLevel();
         FlipCardFront flipCardFront = flipCardImp.getFlipCardFront();
         FlipCardBack flipCardBack = flipCardImp.getFlipCardBack();
-        return new FlipCardImpDTO(studyPercent, flipCardFront, flipCardBack, level);
+        return new FlipCardImpDTO(studyPercent, flipCardFront, flipCardBack);
     }
 
     public FlipCardImp flipCardImpFromDTO (FlipCardImpDTO flipCardImpDTO){
