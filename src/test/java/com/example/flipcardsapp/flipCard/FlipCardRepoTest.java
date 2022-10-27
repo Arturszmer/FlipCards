@@ -29,7 +29,7 @@ class FlipCardRepoTest {
     }
 
     @Test
-    public void removeSpecificFlipCard() {
+    public void deleteSpecificFlipCard() {
         // given
         FlipCardImp flipCardImp1 = getFlipCardImpOne();
         FlipCardImp flipCardImp2 = getFlipCardImpTwo();
@@ -45,7 +45,7 @@ class FlipCardRepoTest {
     }
 
     @Test
-    public void findSpecificCard() {
+    public void findSpecificFlipCard() {
         // given
         FlipCardImp flipCardImp1 = getFlipCardImpOne();
         flipCardRepo.save(flipCardImp1);
@@ -55,6 +55,19 @@ class FlipCardRepoTest {
         System.out.println(riverCard + "xxxyy");
         // then
         assertThat(riverCard.get()).isEqualTo(flipCardImp1);
+    }
+
+    @Test
+    public void findFlipCardByUUID() {
+        // given
+        FlipCardImp flipCardImp1 = getFlipCardImpOne();
+        flipCardRepo.save(flipCardImp1);
+
+        // when
+        Optional<FlipCardImp> byUuid = flipCardRepo.findFlipCardImpByUuid(flipCardImp1.getUuid());
+
+        // then
+        assertThat(byUuid.get()).isEqualTo(flipCardImp1);
     }
 
     @Test

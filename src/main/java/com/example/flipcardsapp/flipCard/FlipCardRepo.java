@@ -10,4 +10,6 @@ public interface FlipCardRepo extends JpaRepository<FlipCardImp, Long> {
 
     Optional<FlipCardImp> findByFlipCardFront_Content(String content);
     Optional<FlipCardImp> deleteByFlipCardFront_Content(String content);
+    Optional<FlipCardImp> deleteByUuid(String uuid);
+    Optional<FlipCardImp> findFlipCardImpByUuid(String uuid);
 }

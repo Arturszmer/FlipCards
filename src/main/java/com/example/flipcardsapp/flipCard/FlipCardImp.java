@@ -2,6 +2,7 @@ package com.example.flipcardsapp.flipCard;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 public class FlipCardImp {
@@ -10,6 +11,7 @@ public class FlipCardImp {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private float studyPercent;
+    private String uuid;
 
     @OneToOne(cascade = CascadeType.ALL)
 
@@ -24,6 +26,14 @@ public class FlipCardImp {
         this.flipCardFront = flipCardFront;
         this.flipCardBack = flipCardBack;
         this.studyPercent = 0.01f;
+        this.uuid = UUID.randomUUID().toString();
+    }
+
+    public FlipCardImp(float studyPercent, UUID uuid, FlipCardFront flipCardFront, FlipCardBack flipCardBack) {
+        this.studyPercent = studyPercent;
+        this.uuid = uuid.toString();
+        this.flipCardFront = flipCardFront;
+        this.flipCardBack = flipCardBack;
     }
 
     public FlipCardFront getFlipCardFront() {
@@ -36,6 +46,10 @@ public class FlipCardImp {
 
     public float getStudyPercent() {
         return studyPercent;
+    }
+
+    public String getUuid() {
+        return uuid;
     }
 
     @Override
@@ -55,6 +69,7 @@ public class FlipCardImp {
     public String toString() {
         return "FlipCardImp{" +
                 "studyPercent=" + studyPercent +
+                ", uuid=" + uuid +
                 ", flipCardFront=" + flipCardFront +
                 ", flipCardBack=" + flipCardBack +
                 '}';

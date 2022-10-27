@@ -1,13 +1,17 @@
 package com.example.flipcardsapp.flipCard;
 
+import java.util.UUID;
+
 public class FlipCardImpDTO {
 
     private final float studyLevel;
+    private final String uuid;
     private final FlipCardFront flipCardFront;
     private final FlipCardBack flipCardBack;
 
-    public FlipCardImpDTO(float studyLevel, FlipCardFront flipCardFront, FlipCardBack flipCardBack) {
+    public FlipCardImpDTO(float studyLevel, UUID uuid, FlipCardFront flipCardFront, FlipCardBack flipCardBack) {
         this.studyLevel = studyLevel;
+        this.uuid = uuid.toString();
         this.flipCardFront = flipCardFront;
         this.flipCardBack = flipCardBack;
     }
@@ -16,10 +20,15 @@ public class FlipCardImpDTO {
         this.flipCardFront = flipCardFront;
         this.flipCardBack = flipCardBack;
         this.studyLevel = 0.01f;
+        this.uuid = UUID.randomUUID().toString();
     }
 
     public float getStudyLevel() {
         return studyLevel;
+    }
+
+    public String getUuid() {
+        return uuid;
     }
 
     public FlipCardFront getFlipCardFront() {
@@ -29,5 +38,7 @@ public class FlipCardImpDTO {
     public FlipCardBack getFlipCardBack() {
         return flipCardBack;
     }
+
+
 
 }

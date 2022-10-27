@@ -5,8 +5,8 @@ import com.example.flipcardsapp.userApp.AppUser;
 import com.example.flipcardsapp.userApp.AppUserDTO;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class Mapper {
@@ -34,12 +34,16 @@ public class Mapper {
 
     public FlipCardImpDTO flipCardImpDTO (FlipCardImp flipCardImp){
         float studyPercent = flipCardImp.getStudyPercent();
+        UUID uuid = UUID.fromString(flipCardImp.getUuid());
         FlipCardFront flipCardFront = flipCardImp.getFlipCardFront();
         FlipCardBack flipCardBack = flipCardImp.getFlipCardBack();
-        return new FlipCardImpDTO(studyPercent, flipCardFront, flipCardBack);
+        return new FlipCardImpDTO(studyPercent, uuid, flipCardFront, flipCardBack);
     }
 
     public FlipCardImp flipCardImpFromDTO (FlipCardImpDTO flipCardImpDTO){
-        return new FlipCardImp(flipCardImpDTO.getFlipCardFront(), flipCardImpDTO.getFlipCardBack());
+        return new FlipCardImp(flipCardImpDTO.getStudyLevel(),
+                UUID.fromString(flipCardImpDTO.getUuid()),
+                flipCardImpDTO.getFlipCardFront(),
+                flipCardImpDTO.getFlipCardBack());
     }
 }

@@ -30,7 +30,8 @@ public class ProdDB implements CommandLineRunner {
         flipCardRepo.save(flipCardImp2);
         List<FlipCardImp> allFLipCards = flipCardRepo.findAll();
         AppUser appUser1 = new AppUser("Artur", "artur@gmail.com", "xxyyz", allFLipCards);
-        appUserRepo.save(appUser1);
+        AppUser save = appUserRepo.save(appUser1);
+        System.out.println(save + "saved");
     }
 
 }
