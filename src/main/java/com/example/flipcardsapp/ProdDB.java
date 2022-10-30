@@ -2,7 +2,7 @@ package com.example.flipcardsapp;
 
 import com.example.flipcardsapp.flipCard.dao.model.FlipCardBack;
 import com.example.flipcardsapp.flipCard.dao.model.FlipCardFront;
-import com.example.flipcardsapp.flipCard.dao.model.FlipCardImp;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCard;
 import com.example.flipcardsapp.flipCard.dao.FlipCardRepo;
 import com.example.flipcardsapp.userApp.dao.model.AppUser;
 import com.example.flipcardsapp.userApp.dao.AppUserRepo;
@@ -24,11 +24,19 @@ public class ProdDB implements CommandLineRunner {
 
     @Override
     public void run(String... args){
-        FlipCardImp flipCardImp1 = new FlipCardImp(new FlipCardFront("river"), new FlipCardBack("rzeka"));
-        FlipCardImp flipCardImp2 = new FlipCardImp(new FlipCardFront("wind"), new FlipCardBack("wiatro"));
-        flipCardRepo.save(flipCardImp1);
-        flipCardRepo.save(flipCardImp2);
-        List<FlipCardImp> allFLipCards = flipCardRepo.findAll();
+        FlipCard flipCard1 = new FlipCard(new FlipCardFront("river"), new FlipCardBack("rzeka"));
+        FlipCard flipCard2 = new FlipCard(new FlipCardFront("wind"), new FlipCardBack("wiatro"));
+        FlipCard flipCard3 = new FlipCard(new FlipCardFront("sea"), new FlipCardBack("morze"));
+        FlipCard flipCard4 = new FlipCard(new FlipCardFront("attempt"), new FlipCardBack("próba"));
+        FlipCard flipCard5 = new FlipCard(new FlipCardFront("inside"), new FlipCardBack("w środku"));
+        FlipCard flipCard6 = new FlipCard(new FlipCardFront("labor law"), new FlipCardBack("prawo pracy"));
+        flipCardRepo.save(flipCard1);
+        flipCardRepo.save(flipCard2);
+        flipCardRepo.save(flipCard3);
+        flipCardRepo.save(flipCard4);
+        flipCardRepo.save(flipCard5);
+        flipCardRepo.save(flipCard6);
+        List<FlipCard> allFLipCards = flipCardRepo.findAll();
         AppUser appUser1 = new AppUser("Artur", "artur@gmail.com", "xxyyz", allFLipCards);
         appUserRepo.save(appUser1);
     }
