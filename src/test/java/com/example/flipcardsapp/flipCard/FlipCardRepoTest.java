@@ -24,9 +24,9 @@ class FlipCardRepoTest {
     @Test
     public void addFlipCard(){
         // given
-        FlipCard flipCard = getFlipCardOne();
+        FlipCard flipCardRiver = getFlipCardRiver();
         // when
-        flipCardRepo.save(flipCard);
+        flipCardRepo.save(flipCardRiver);
         List<FlipCard> allCards = flipCardRepo.findAll();
         // then
         assertThat(allCards.size()).isEqualTo(1);
@@ -35,10 +35,10 @@ class FlipCardRepoTest {
     @Test
     public void deleteSpecificFlipCard() {
         // given
-        FlipCard flipCard1 = getFlipCardOne();
-        FlipCard flipCard2 = getFlipCardTwo();
-        flipCardRepo.save(flipCard1);
-        flipCardRepo.save(flipCard2);
+        FlipCard flipCardRiver = getFlipCardRiver();
+        FlipCard flipCardWind = getFlipCardWind();
+        flipCardRepo.save(flipCardWind);
+        flipCardRepo.save(flipCardWind);
         // when
         flipCardRepo.deleteByFlipCardFrontContent("river");
         List<FlipCard> allFlipCards = flipCardRepo.findAll();
@@ -49,36 +49,36 @@ class FlipCardRepoTest {
     @Test
     public void findSpecificFlipCard() {
         // given
-        FlipCard flipCard1 = getFlipCardOne();
-        flipCardRepo.save(flipCard1);
+        FlipCard flipCardRiver = getFlipCardRiver();
+        flipCardRepo.save(flipCardRiver);
 
         // when
         Optional<FlipCard> riverCard = flipCardRepo.findByFlipCardFrontContent("river");
 
         // then
-        assertThat(riverCard.get()).isEqualTo(flipCard1);
+        assertThat(riverCard.get()).isEqualTo(flipCardRiver);
     }
 
     @Test
     public void findFlipCardByUUID() {
         // given
-        FlipCard flipCard1 = getFlipCardOne();
-        flipCardRepo.save(flipCard1);
+        FlipCard flipCardRiver = getFlipCardRiver();
+        flipCardRepo.save(flipCardRiver);
 
         // when
-        Optional<FlipCard> byUuid = flipCardRepo.findFlipCardImpByUuid(flipCard1.getUuid());
+        Optional<FlipCard> byUuid = flipCardRepo.findFlipCardImpByUuid(flipCardRiver.getUuid());
 
         // then
-        assertThat(byUuid.get()).isEqualTo(flipCard1);
+        assertThat(byUuid.get()).isEqualTo(flipCardRiver);
     }
 
     @Test
     public void checkCardLevelStudy() {
         // given
-        FlipCard flipCard1 = getFlipCardOne();
-        FlipCard flipCard2 = getFlipCardTwo();
-        flipCardRepo.save(flipCard1);
-        flipCardRepo.save(flipCard2);
+        FlipCard flipCardRiver = getFlipCardRiver();
+        FlipCard flipCardWind = getFlipCardWind();
+        flipCardRepo.save(flipCardRiver);
+        flipCardRepo.save(flipCardWind);
 
         // when
         Optional<FlipCard> riverCard = flipCardRepo.findByFlipCardFrontContent("river");
@@ -89,11 +89,12 @@ class FlipCardRepoTest {
 
     }
 
-    private static FlipCard getFlipCardOne() {
-        return new FlipCard(new FlipCardFront("river"), new FlipCardBack("rzeka"));
+    private static FlipCard getFlipCardRiver() {
+        return new FlipCard(
+                new FlipCardFront("river"), new FlipCardBack("rzeka"));
     }
 
-    private static FlipCard getFlipCardTwo() {
+    private static FlipCard getFlipCardWind() {
         return new FlipCard(new FlipCardFront("wind"), new FlipCardBack("wiatr"));
     }
 }

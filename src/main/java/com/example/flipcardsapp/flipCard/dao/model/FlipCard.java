@@ -14,8 +14,8 @@ public class FlipCard {
     private String uuid;
 
     @OneToOne(cascade = CascadeType.PERSIST)
-
     private FlipCardFront flipCardFront;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     private FlipCardBack flipCardBack;
 

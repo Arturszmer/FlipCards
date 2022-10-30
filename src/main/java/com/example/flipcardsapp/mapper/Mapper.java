@@ -12,7 +12,8 @@ import java.util.UUID;
 public class Mapper {
 
     public AppUserDTO appUserDTO(AppUser appUser){
-        return new AppUserDTO(appUser.getUserName(),
+        return new AppUserDTO(
+                appUser.getUserName(),
                 appUser.getEmailAddress(),
                 appUser.getPassword(), appUser.getFlipCards()
                 .stream()
@@ -21,7 +22,8 @@ public class Mapper {
     }
 
     public AppUser appUserFromDTO (AppUserDTO appUserDTO){
-        return new AppUser(appUserDTO.getUserName(),
+        return new AppUser(
+                appUserDTO.getUserName(),
                 appUserDTO.getEmailAddres(),
                 appUserDTO.getPassword(),
                 appUserDTO.getFlipCards()
@@ -31,14 +33,16 @@ public class Mapper {
     }
 
     public FlipCardDTO flipCardDTO(FlipCard flipCard){
-        return new FlipCardDTO(flipCard.getStudyPercent(),
+        return new FlipCardDTO(
+                flipCard.getStudyPercent(),
                 UUID.fromString(flipCard.getUuid()).toString(),
                 flipCard.getFlipCardFront(), flipCard.getFlipCardBack());
     }
 
     public FlipCard flipCardFromDTO(FlipCardDTO flipCardDTO){
         flipCardDTO.setUuid(UUID.randomUUID().toString());
-        return new FlipCard(flipCardDTO.getStudyLevel(),
+        return new FlipCard(
+                flipCardDTO.getStudyLevel(),
                 UUID.fromString(flipCardDTO.getUuid()),
                 flipCardDTO.getFlipCardFront(),
                 flipCardDTO.getFlipCardBack());
