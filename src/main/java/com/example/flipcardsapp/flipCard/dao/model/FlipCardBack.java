@@ -3,7 +3,7 @@ package com.example.flipcardsapp.flipCard.dao.model;
 import javax.persistence.*;
 
 @Entity
-public class FlipCardBack implements FlipCard {
+public class FlipCardBack {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,6 +1,6 @@
 package com.example.flipcardsapp.userApp.dao.model;
 
-import com.example.flipcardsapp.flipCard.dao.model.FlipCardImp;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCard;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,13 +17,14 @@ public class AppUser {
     private String userName;
     private String emailAddress;
     private String password;
+
     @OneToMany()
-    private List<FlipCardImp> flipCards = new ArrayList<>();
+    private List<FlipCard> flipCards = new ArrayList<>();
 
     public AppUser() {
     }
 
-    public AppUser(String userName, String emailAddress, String password, List<FlipCardImp> flipCards) {
+    public AppUser(String userName, String emailAddress, String password, List<FlipCard> flipCards) {
         this.userName = userName;
         this.emailAddress = emailAddress;
         this.password = password;
@@ -42,11 +43,11 @@ public class AppUser {
         return password;
     }
 
-    public List<FlipCardImp> getFlipCards() {
+    public List<FlipCard> getFlipCards() {
         return Collections.unmodifiableList(flipCards);
     }
 
-    public void assignFlipCard(FlipCardImp flipCard){
+    public void assignFlipCard(FlipCard flipCard){
         this.flipCards.add(flipCard);
     }
 

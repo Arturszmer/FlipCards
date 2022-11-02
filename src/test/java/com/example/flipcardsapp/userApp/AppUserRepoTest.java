@@ -2,7 +2,7 @@ package com.example.flipcardsapp.userApp;
 
 import com.example.flipcardsapp.flipCard.dao.model.FlipCardBack;
 import com.example.flipcardsapp.flipCard.dao.model.FlipCardFront;
-import com.example.flipcardsapp.flipCard.dao.model.FlipCardImp;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCard;
 import com.example.flipcardsapp.flipCard.dao.FlipCardRepo;
 import com.example.flipcardsapp.userApp.dao.model.AppUser;
 import com.example.flipcardsapp.userApp.dao.AppUserRepo;
@@ -63,10 +63,10 @@ class AppUserRepoTest {
         // given
         prepareData();
         Optional<AppUser> arturSz88User = appUserRepo.findByUserName("ArturSz88");
-        FlipCardImp flipCardImp = new FlipCardImp(new FlipCardFront("river"), new FlipCardBack("rzeka"));
-        arturSz88User.get().assignFlipCard(flipCardImp);
+        FlipCard flipCard = new FlipCard(new FlipCardFront("river"), new FlipCardBack("rzeka"));
+        arturSz88User.get().assignFlipCard(flipCard);
         // when
-        List<FlipCardImp> flipCardsFromUser = arturSz88User.get().getFlipCards();
+        List<FlipCard> flipCardsFromUser = arturSz88User.get().getFlipCards();
         // then
         assertThat(flipCardsFromUser.get(0).getFlipCardFront().getContent()).isEqualTo("river");
 

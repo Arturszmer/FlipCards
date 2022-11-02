@@ -3,8 +3,8 @@ package com.example.flipcardsapp.flipCard;
 import com.example.flipcardsapp.flipCard.dao.*;
 import com.example.flipcardsapp.flipCard.dao.model.FlipCardBack;
 import com.example.flipcardsapp.flipCard.dao.model.FlipCardFront;
-import com.example.flipcardsapp.flipCard.dao.model.FlipCardImp;
-import com.example.flipcardsapp.flipCard.dao.model.FlipCardImpDTO;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCard;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCardDTO;
 import com.example.flipcardsapp.flipCard.service.FlipCardService;
 import com.example.flipcardsapp.mapper.Mapper;
 import org.junit.jupiter.api.Test;
@@ -31,13 +31,13 @@ class FlipCardServiceTest {
     @Test
     public void addFlipCard() {
         // given
-        FlipCardImpDTO flipCardImpDTO = new FlipCardImpDTO(new FlipCardFront("road"), new FlipCardBack("droga"));
-        FlipCardImpDTO flipCardImpDTO2 = new FlipCardImpDTO(new FlipCardFront("find"), new FlipCardBack("znaleźć"));
+        FlipCardDTO flipCardDTO = new FlipCardDTO(new FlipCardFront("road"), new FlipCardBack("droga"));
+        FlipCardDTO flipCardDTO2 = new FlipCardDTO(new FlipCardFront("find"), new FlipCardBack("znaleźć"));
 
         // when
-        flipCardService.addFlipCard(flipCardImpDTO);
-        flipCardService.addFlipCard(flipCardImpDTO2);
-        List<FlipCardImp> allNewFlipCards = flipCardRepo.findAll();
+        flipCardService.createFlipCard(flipCardDTO);
+        flipCardService.createFlipCard(flipCardDTO2);
+        List<FlipCard> allNewFlipCards = flipCardRepo.findAll();
 
         // then
         assertThat(allNewFlipCards.size()).isEqualTo(2);
@@ -46,12 +46,12 @@ class FlipCardServiceTest {
     @Test
     public void removeFlipCard() {
         // given
-        FlipCardImpDTO flipCardImpDTO = new FlipCardImpDTO(new FlipCardFront("road"), new FlipCardBack("droga"));
-        flipCardService.addFlipCard(flipCardImpDTO);
+        FlipCardDTO flipCardDTO = new FlipCardDTO(new FlipCardFront("road"), new FlipCardBack("droga"));
+        flipCardService.createFlipCard(flipCardDTO);
 
         // when
-        flipCardService.deleteFlipCard(flipCardImpDTO);
-        List<FlipCardImp> allFlipCards = flipCardRepo.findAll();
+        flipCardService.deleteFlipCard(flipCardDTO);
+        List<FlipCard> allFlipCards = flipCardRepo.findAll();
 
         // then
         assertThat(allFlipCards.size()).isEqualTo(0);
@@ -60,12 +60,12 @@ class FlipCardServiceTest {
     @Test
     public void editFLipCardFrontContent() {
         // given
-        FlipCardImpDTO flipCardImpDTO = new FlipCardImpDTO(new FlipCardFront("road"), new FlipCardBack("droga"));
-        flipCardService.addFlipCard(flipCardImpDTO);
+        FlipCardDTO flipCardDTO = new FlipCardDTO(new FlipCardFront("road"), new FlipCardBack("droga"));
+        flipCardService.createFlipCard(flipCardDTO);
 
         // when
-        flipCardService.editFlipCardFrontContent(flipCardImpDTO, "road, way");
-        Optional<FlipCardImp> changedFlipCard = flipCardRepo.findFlipCardImpByUuid(flipCardImpDTO.getUuid());
+        flipCardService.editFlipCardFrontContent(flipCardDTO, "road, way");
+        Optional<FlipCard> changedFlipCard = flipCardRepo.findFlipCardImpByUuid(flipCardDTO.getUuid());
         // then
         assertThat(changedFlipCard.get().getFlipCardFront().getContent()).isEqualTo("road, way");
     }
@@ -73,12 +73,12 @@ class FlipCardServiceTest {
     @Test
     public void editFlipCardBackContent() {
         // given
-        FlipCardImpDTO flipCardImpDTO = new FlipCardImpDTO(new FlipCardFront("road"), new FlipCardBack("droga"));
-        flipCardService.addFlipCard(flipCardImpDTO);
+        FlipCardDTO flipCardDTO = new FlipCardDTO(new FlipCardFront("road"), new FlipCardBack("droga"));
+        flipCardService.createFlipCard(flipCardDTO);
 
         // when
-        flipCardService.editFlipCardBackContent(flipCardImpDTO, "droga, szosa, trakt");
-        Optional<FlipCardImp> changedFlipCard = flipCardRepo.findFlipCardImpByUuid(flipCardImpDTO.getUuid());
+        flipCardService.editFlipCardBackContent(flipCardDTO, "droga, szosa, trakt");
+        Optional<FlipCard> changedFlipCard = flipCardRepo.findFlipCardImpByUuid(flipCardDTO.getUuid());
         // then
         assertThat(changedFlipCard.get().getFlipCardBack().getContent()).isEqualTo("droga, szosa, trakt");
     }
@@ -89,7 +89,7 @@ class FlipCardServiceTest {
         prepareFlipCards();
 
         // when
-        List<FlipCardImpDTO> allFlipCards = flipCardService.findAllFlipCards();
+        List<FlipCardDTO> allFlipCards = flipCardService.findAllFlipCards();
 
         // then
         assertThat(allFlipCards.size()).isEqualTo(2);
@@ -101,7 +101,7 @@ class FlipCardServiceTest {
         prepareFlipCards();
 
         // when
-        List<FlipCardFront> flipCardFronts = flipCardService.showAllFrontFlipCards();
+        List<FlipCardFront> flipCardFronts = flipCardService.findAllFrontFlipCards();
 
         // then
         assertThat(flipCardFronts.get(0).getContent()).isEqualTo("road");
@@ -114,16 +114,16 @@ class FlipCardServiceTest {
         prepareFlipCards();
 
         // when
-        List<FlipCardBack> flipCardBacks = flipCardService.showAllBackFlipCards();
+        List<FlipCardBack> flipCardBacks = flipCardService.findAllBackFlipCards();
 
         // then
         assertThat(flipCardBacks.get(0).getContent()).isEqualTo("droga");
     }
 
     public void prepareFlipCards(){
-        FlipCardImpDTO flipCardImpDTO = new FlipCardImpDTO(new FlipCardFront("road"), new FlipCardBack("droga"));
-        FlipCardImpDTO flipCardImpDTO2 = new FlipCardImpDTO(new FlipCardFront("find"), new FlipCardBack("znaleźć"));
-        flipCardService.addFlipCard(flipCardImpDTO);
-        flipCardService.addFlipCard(flipCardImpDTO2);
+        FlipCardDTO flipCardDTO = new FlipCardDTO(new FlipCardFront("road"), new FlipCardBack("droga"));
+        FlipCardDTO flipCardDTO2 = new FlipCardDTO(new FlipCardFront("find"), new FlipCardBack("znaleźć"));
+        flipCardService.createFlipCard(flipCardDTO);
+        flipCardService.createFlipCard(flipCardDTO2);
     }
 }

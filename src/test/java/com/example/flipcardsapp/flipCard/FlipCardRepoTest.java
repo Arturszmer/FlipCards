@@ -2,7 +2,7 @@ package com.example.flipcardsapp.flipCard;
 
 import com.example.flipcardsapp.flipCard.dao.model.FlipCardBack;
 import com.example.flipcardsapp.flipCard.dao.model.FlipCardFront;
-import com.example.flipcardsapp.flipCard.dao.model.FlipCardImp;
+import com.example.flipcardsapp.flipCard.dao.model.FlipCard;
 import com.example.flipcardsapp.flipCard.dao.FlipCardRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,10 @@ class FlipCardRepoTest {
     @Test
     public void addFlipCard(){
         // given
-        FlipCardImp flipCardImp = getFlipCardImpOne();
+        FlipCard flipCardRiver = getFlipCardRiver();
         // when
-        flipCardRepo.save(flipCardImp);
-        List<FlipCardImp> allCards = flipCardRepo.findAll();
+        flipCardRepo.save(flipCardRiver);
+        List<FlipCard> allCards = flipCardRepo.findAll();
         // then
         assertThat(allCards.size()).isEqualTo(1);
     }
@@ -35,15 +35,13 @@ class FlipCardRepoTest {
     @Test
     public void deleteSpecificFlipCard() {
         // given
-        FlipCardImp flipCardImp1 = getFlipCardImpOne();
-        FlipCardImp flipCardImp2 = getFlipCardImpTwo();
-        flipCardRepo.save(flipCardImp1);
-        flipCardRepo.save(flipCardImp2);
+        FlipCard flipCardRiver = getFlipCardRiver();
+        FlipCard flipCardWind = getFlipCardWind();
+        flipCardRepo.save(flipCardWind);
+        flipCardRepo.save(flipCardWind);
         // when
-        System.out.println(flipCardRepo.findAll() + "wffw");
-        flipCardRepo.deleteByFlipCardFront_Content("river");
-        List<FlipCardImp> allFlipCards = flipCardRepo.findAll();
-        System.out.println(allFlipCards + "aabb");
+        flipCardRepo.deleteByFlipCardFrontContent("river");
+        List<FlipCard> allFlipCards = flipCardRepo.findAll();
         // then
         assertThat(allFlipCards.size()).isEqualTo(1);
     }
@@ -51,55 +49,52 @@ class FlipCardRepoTest {
     @Test
     public void findSpecificFlipCard() {
         // given
-        FlipCardImp flipCardImp1 = getFlipCardImpOne();
-        flipCardRepo.save(flipCardImp1);
+        FlipCard flipCardRiver = getFlipCardRiver();
+        flipCardRepo.save(flipCardRiver);
 
         // when
-        Optional<FlipCardImp> riverCard = flipCardRepo.findByFlipCardFront_Content("river");
+        Optional<FlipCard> riverCard = flipCardRepo.findByFlipCardFrontContent("river");
 
         // then
-        assertThat(riverCard.get()).isEqualTo(flipCardImp1);
+        assertThat(riverCard.get()).isEqualTo(flipCardRiver);
     }
 
     @Test
     public void findFlipCardByUUID() {
         // given
-        FlipCardImp flipCardImp1 = getFlipCardImpOne();
-        flipCardRepo.save(flipCardImp1);
+        FlipCard flipCardRiver = getFlipCardRiver();
+        flipCardRepo.save(flipCardRiver);
 
         // when
-        Optional<FlipCardImp> byUuid = flipCardRepo.findFlipCardImpByUuid(flipCardImp1.getUuid());
+        Optional<FlipCard> byUuid = flipCardRepo.findFlipCardImpByUuid(flipCardRiver.getUuid());
 
         // then
-        assertThat(byUuid.get()).isEqualTo(flipCardImp1);
+        assertThat(byUuid.get()).isEqualTo(flipCardRiver);
     }
 
     @Test
     public void checkCardLevelStudy() {
         // given
-        FlipCardImp flipCardImp1 = getFlipCardImpOne();
-        FlipCardImp flipCardImp2 = getFlipCardImpTwo();
-        flipCardRepo.save(flipCardImp1);
-        flipCardRepo.save(flipCardImp2);
+        FlipCard flipCardRiver = getFlipCardRiver();
+        FlipCard flipCardWind = getFlipCardWind();
+        flipCardRepo.save(flipCardRiver);
+        flipCardRepo.save(flipCardWind);
 
         // when
-        Optional<FlipCardImp> riverCard = flipCardRepo.findByFlipCardFront_Content("river");
-        Optional<Float> percentOfStudy = riverCard.stream().map(FlipCardImp::getStudyPercent).findFirst();
+        Optional<FlipCard> riverCard = flipCardRepo.findByFlipCardFrontContent("river");
+        Optional<Float> percentOfStudy = riverCard.stream().map(FlipCard::getStudyPercent).findFirst();
 
         // then
         assertThat(percentOfStudy.get()).isEqualTo(0.01f);
 
     }
 
-    private static FlipCardImp getFlipCardImpOne() {
-        FlipCardFront flipCardFront = new FlipCardFront("river");
-        FlipCardBack flipCardBack = new FlipCardBack("rzeka");
-        return new FlipCardImp(flipCardFront, flipCardBack);
+    private static FlipCard getFlipCardRiver() {
+        return new FlipCard(
+                new FlipCardFront("river"), new FlipCardBack("rzeka"));
     }
 
-    private static FlipCardImp getFlipCardImpTwo() {
-        FlipCardFront flipCardFront = new FlipCardFront("wind");
-        FlipCardBack flipCardBack = new FlipCardBack("wiatr");
-        return new FlipCardImp(flipCardFront, flipCardBack);
+    private static FlipCard getFlipCardWind() {
+        return new FlipCard(new FlipCardFront("wind"), new FlipCardBack("wiatr"));
     }
 }
